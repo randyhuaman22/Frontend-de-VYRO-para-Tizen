@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:tizen="http://tizen.org/ns/widgets"
+        id="http://vyro.tv/app" version="1.0.0" viewmodes="maximized">
+  <tizen:application id="vyroapp01.VYRO" package="vyroapp01" required_version="5.0" />
+  <tizen:profile name="tv-samsung" />
+  <content src="index.html" />
+  <name>VYRO</name>
+  <icon src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" />
+  <tizen:metadata key="http://tizen.org/metadata/application.info" value="VYRO" />
+  <access origin="*" subdomains="true" />
+  <tizen:privilege name="http://tizen.org/privilege/internet" />
+  <tizen:feature name="http://tizen.org/feature/screen.size.normal.1080.1920" />
+  <tizen:setting screen-orientation="landscape" context-menu="disable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable" />
+</widget>

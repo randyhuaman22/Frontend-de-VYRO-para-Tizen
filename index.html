@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VYRO</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="loginLayer" class="login-layer" role="dialog" aria-label="Iniciar sesión">
+    <div class="login-card">
+      <img class="login-logo" src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" alt="VYRO">
+      <p class="eyebrow">TU ENTRETENIMIENTO, A TU MANERA</p>
+      <h1>Bienvenido</h1>
+      <p class="login-copy">Inicia sesión para continuar</p>
+      <form id="loginForm" autocomplete="off">
+        <label for="username">Usuario</label>
+        <input id="username" name="username" type="text" placeholder="Ingresa tu usuario" autocomplete="username">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password">
+        <button id="btnLogin" class="primary-button" type="submit" tabindex="0">Entrar <span aria-hidden="true">›</span></button>
+      </form>
+      <p id="loginMessage" class="message" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div id="appShell" class="app-shell is-hidden">
+    <aside id="sidebar" class="sidebar" aria-label="Navegación principal">
+      <div class="sidebar-brand">
+        <img src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" alt="VYRO">
+        <span class="brand-word">VYRO</span>
+      </div>
+      <nav id="mainNav">
+        <button class="nav-item" data-view="search" aria-label="Búsqueda" tabindex="0"><span class="nav-icon">⌕</span><span class="nav-label">Búsqueda</span></button>
+        <button class="nav-item" data-view="matches" aria-label="Partidos" tabindex="0"><span class="nav-icon">◉</span><span class="nav-label">Partidos</span></button>
+        <button class="nav-item is-active" data-view="movies" aria-label="Películas" tabindex="0"><span class="nav-icon">▣</span><span class="nav-label">Películas</span></button>
+        <button class="nav-item" data-view="featured" aria-label="Destacadas" tabindex="0"><span class="nav-icon">✦</span><span class="nav-label">Destacadas</span></button>
+        <button class="nav-item" data-view="series" aria-label="Series" tabindex="0"><span class="nav-icon">▤</span><span class="nav-label">Series</span></button>
+        <button class="nav-item" data-view="episodes" aria-label="Episodios" tabindex="0"><span class="nav-icon">▷</span><span class="nav-label">Episodios</span></button>
+      </nav>
+      <div class="sidebar-footer"><span class="online-dot"></span><span class="nav-label">VYRO TV</span></div>
+    </aside>
+
+    <main id="mainContent" class="main-content">
+      <header class="page-header">
+        <div><p class="eyebrow" id="pageEyebrow">EXPLORA VYRO</p><h1 id="pageTitle">Películas</h1></div>
+        <div class="header-mark"><span class="online-dot"></span><span>VYRO</span></div>
+      </header>
+      <section id="searchPanel" class="search-panel is-hidden" aria-label="Buscar contenido">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" type="text" placeholder="Buscar películas, series y más" autocomplete="off" aria-label="Buscar películas, series y más">
+        <span class="search-hint">Usa el teclado de tu control</span>
+      </section>
+      <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+      <section class="catalog-section" aria-label="Contenido"><div id="contentGrid" class="content-grid"></div></section>
+    </main>
+  </div>
+
+  <section id="playerLayer" class="player-layer is-hidden" aria-label="Reproductor">
+    <video id="videoPlayer" class="video-player" controls autoplay playsinline></video>
+    <div id="iframeHost" class="iframe-host is-hidden"></div>
+    <button id="btnVolver" class="back-button" tabindex="0"><span aria-hidden="true">‹</span> Volver</button>
+    <div id="playerStatus" class="player-status" aria-live="polite"></div>
+  </section>
+</body>
+</html>
