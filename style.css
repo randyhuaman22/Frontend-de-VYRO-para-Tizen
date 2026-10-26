@@ -1,72 +1,96 @@
 * { box-sizing: border-box; }
-:root { --bg: #050505; --muted: #9898a5; --blue: #4f46e5; --white: #f8f8fb; }
-html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--bg); color: var(--white); font-family: Arial, Helvetica, sans-serif; }
-body { -webkit-font-smoothing: antialiased; }
-button, input { font: inherit; }
-button { color: inherit; }
+:root { --bg: #050505; --white: #f8f8fb; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--bg); color: var(--white); font-family: Arial, sans-serif; }
+button, input { font: inherit; outline: none; }
 .is-hidden { display: none !important; }
-:focus { border: 5px solid #4F46E5; transform: scale(1.08) translateZ(0); outline: none; transition: all 0.2s ease; z-index: 3; }
-.login-layer { position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 42%, rgba(65,31,138,.24), transparent 38%), #050505; }
-.login-card { width: 510px; padding: 36px 46px 32px; border: 1px solid rgba(255,255,255,.09); border-radius: 18px; background: rgba(14,14,18,.94); box-shadow: 0 26px 100px rgba(0,0,0,.6); }
-.login-logo { display: block; width: 210px; height: 112px; margin: -10px auto 4px; object-fit: contain; }
-.eyebrow { margin: 0 0 10px; color: #8c75ff; font-size: 13px; font-weight: 700; letter-spacing: 3px; }
-.login-card .eyebrow, .login-card h1, .login-copy { text-align: center; }
-.login-card h1 { margin: 0; font-size: 38px; letter-spacing: -.8px; }
-.login-copy { margin: 10px 0 28px; color: var(--muted); font-size: 18px; }
-#loginForm label { display: block; margin: 18px 0 8px; color: #d7d7df; font-size: 15px; font-weight: 700; }
-#loginForm input { display: block; width: 100%; height: 56px; padding: 0 17px; border: 1px solid #303039; border-radius: 8px; background: #09090c; color: #fff; font-size: 18px; }
-#loginForm input:focus, #searchInput:focus { border-color: var(--blue); }
-.primary-button { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 58px; margin-top: 28px; padding: 0 20px; border: 0; border-radius: 8px; background: linear-gradient(100deg, #5146e5, #792cff); color: white; font-size: 20px; font-weight: 700; cursor: pointer; }
-.primary-button span { font-size: 32px; line-height: 20px; }
-.message { min-height: 20px; margin: 14px 0 0; color: #ff828e; text-align: center; font-size: 15px; }
-.app-shell { position: fixed; inset: 0; overflow: hidden; background: radial-gradient(ellipse at 80% -12%, rgba(73,44,143,.2), transparent 38%), var(--bg); }
-.sidebar { position: fixed; z-index: 50; top: 0; bottom: 0; left: 0; width: 92px; padding: 26px 14px; overflow: hidden; border-right: 1px solid rgba(255,255,255,.06); background: rgba(9,9,12,.96); transition: width .22s ease, box-shadow .22s ease; }
-.sidebar:focus-within { width: 286px; box-shadow: 18px 0 55px rgba(0,0,0,.58); }
-.sidebar-brand { display: flex; align-items: center; height: 62px; margin: 0 0 46px; padding-left: 10px; white-space: nowrap; }
-.sidebar-brand img { flex: 0 0 50px; width: 50px; height: 48px; object-fit: contain; }
-.brand-word { display: none; margin-left: 12px; color: white; font-size: 24px; font-weight: 800; letter-spacing: 4px; }
+
+/* Enfoque Universal (Focus TV) */
+:focus { border: 4px solid #4F46E5 !important; transform: scale(1.05); box-shadow: 0 10px 25px rgba(79, 70, 229, 0.6); z-index: 10; transition: all 0.2s; }
+
+/* Login */
+.login-layer { position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; background: #050505; }
+.login-container { display: flex; gap: 20px; align-items: stretch; }
+.login-card { width: 450px; padding: 40px; border-radius: 18px; background: #121218; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+.login-logo { max-width: 140px; height: auto; display: block; margin: 0 auto 20px auto; }
+.eyebrow { margin: 0 0 10px; color: #8c75ff; font-size: 13px; font-weight: bold; letter-spacing: 3px; text-align: center; text-transform: uppercase; }
+.login-card h1 { text-align: center; margin-top: 0; font-size: 32px; }
+#loginForm label { display: block; margin: 15px 0 5px; font-weight: bold; color: #ccc; }
+#loginForm input { width: 100%; height: 50px; padding: 10px; border-radius: 8px; background: #1a1a24; border: 2px solid #333; color: white; font-size: 18px; cursor: pointer; }
+.primary-button { width: 100%; height: 55px; margin-top: 25px; border-radius: 8px; background: linear-gradient(100deg, #5146e5, #792cff); border: none; color: white; font-size: 20px; font-weight: bold; cursor: pointer; }
+.message { color: #ff828e; text-align: center; margin-top: 15px; }
+
+/* Teclado del Login */
+.login-keyboard { width: 380px; background: #121218; padding: 25px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; align-content: center; }
+.log-key { background: #2a2a35; color: white; border: none; border-radius: 8px; font-size: 24px; font-weight: bold; cursor: pointer; height: 50px; display: flex; align-items: center; justify-content: center; }
+.log-key:focus { background: #4F46E5; }
+.key-spc { grid-column: span 3; }
+.key-del { grid-column: span 3; background: #e50914; }
+.key-enter { grid-column: span 6; background: #4f46e5; margin-top: 10px; height: 60px; }
+
+/* Menú Lateral */
+.app-shell { position: fixed; inset: 0; background: var(--bg); }
+.sidebar { position: fixed; z-index: 50; top: 0; bottom: 0; left: 0; width: 92px; padding: 26px 14px; background: #0b0b0f; border-right: 1px solid #222; transition: width 0.2s; }
+.sidebar:focus-within { width: 280px; }
+.sidebar-brand { height: 60px; padding-left: 10px; margin-bottom: 30px; }
+.brand-word { font-size: 24px; font-weight: bold; display: none; }
 .sidebar:focus-within .brand-word { display: block; }
-#mainNav { display: flex; flex-direction: column; }
-.nav-item { display: flex; align-items: center; width: 62px; height: 60px; margin: 0 0 10px; padding: 0 13px; overflow: hidden; border: 2px solid transparent; border-radius: 12px; background: transparent; color: #a7a7b2; text-align: left; white-space: nowrap; cursor: pointer; }
-.sidebar:focus-within .nav-item { width: 252px; }
-.nav-item.is-active { background: linear-gradient(90deg, rgba(79,70,229,.3), rgba(129,43,255,.12)); color: #fff; }
-.nav-icon { flex: 0 0 31px; width: 31px; font-size: 27px; line-height: 1; text-align: center; }
-.nav-label { display: none; margin-left: 14px; font-size: 18px; font-weight: 600; }
+.nav-item { display: flex; align-items: center; width: 62px; height: 60px; margin-bottom: 10px; padding: 0 13px; border-radius: 12px; background: transparent; color: #aaa; border: 2px solid transparent; cursor: pointer; }
+.sidebar:focus-within .nav-item { width: 100%; }
+.nav-item.is-active { background: rgba(79,70,229,.3); color: white; }
+.nav-icon { font-size: 26px; margin-right: 15px; }
+.nav-label { font-size: 18px; font-weight: bold; display: none; }
 .sidebar:focus-within .nav-label { display: inline; }
-.nav-item:focus { border: 4px solid #4F46E5; background: #201c39; color: #fff; transform: scale(1.03) translateZ(0); }
-.sidebar-footer { position: absolute; bottom: 28px; left: 23px; display: flex; align-items: center; height: 35px; white-space: nowrap; color: #8e8e9a; font-size: 14px; }
+.sidebar-footer { position: absolute; bottom: 20px; left: 20px; color: #888; display: flex; align-items: center; }
 .sidebar-footer .nav-label { display: none; }
-.sidebar:focus-within .sidebar-footer .nav-label { display: inline; }
-.online-dot { display: inline-block; width: 9px; height: 9px; margin-right: 11px; border-radius: 50%; background: #7b3cff; box-shadow: 0 0 13px #7b3cff; }
-.main-content { height: 100%; margin-left: 92px; padding: 54px 62px 42px 48px; overflow: auto; }
-.page-header { display: flex; align-items: flex-end; justify-content: space-between; margin: 0 0 36px; }
-.page-header h1 { margin: 0; font-size: 43px; font-weight: 700; letter-spacing: -.8px; }
-.header-mark { display: flex; align-items: center; color: #bdbdc6; font-size: 16px; font-weight: 800; letter-spacing: 3px; }
-.search-panel { display: flex; align-items: center; height: 68px; margin: -12px 0 30px; padding: 0 20px; border: 1px solid #33323d; border-radius: 12px; background: #111116; }
-.search-icon { margin-right: 16px; color: #9280ff; font-size: 30px; }
-#searchInput { flex: 1; min-width: 0; height: 52px; border: 2px solid transparent; border-radius: 6px; background: transparent; color: white; font-size: 21px; }
-#searchInput::placeholder { color: #7f7f8b; }
-.search-hint { margin-left: 14px; color: #777783; font-size: 14px; }
-.status-message { min-height: 20px; margin: -10px 0 16px; color: #aaaab5; font-size: 16px; }
-.status-message.error { color: #ff828e; }
-.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); column-gap: 26px; row-gap: 30px; align-items: start; padding: 4px 10px 38px 4px; }
-.content-grid.sports-grid { display: flex; flex-wrap: wrap; align-items: flex-start; }
-.catalog-card { position: relative; min-width: 0; overflow: visible; border: 3px solid transparent; border-radius: 11px; background: #121218; cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; transform: translateZ(0); }
-.poster-card { position: relative; height: auto; padding-bottom: 150%; overflow: hidden; }
-.poster-card img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border-radius: 7px; background: linear-gradient(145deg,#191926,#0b0b10); object-fit: cover; }
-.poster-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px; background: linear-gradient(145deg,#211958,#11111a 70%); color: #fff; text-align: center; font-size: 22px; font-weight: 700; }
-.card-caption { position: absolute; right: 0; bottom: 0; left: 0; min-height: 67px; padding: 22px 12px 11px; overflow: hidden; border-radius: 0 0 8px 8px; background: linear-gradient(transparent,rgba(0,0,0,.92) 27%); color: white; font-size: 16px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-.poster-card:focus, .sports-ticket:focus { z-index: 4; border-color: #4F46E5; box-shadow: 0 0 28px rgba(92,73,255,.45); transform: scale(1.08) translateZ(0); }
-.sports-ticket { display: flex; flex: 0 0 330px; flex-direction: column; justify-content: space-between; min-height: 168px; margin: 0 22px 22px 0; padding: 22px; overflow: hidden; border: 3px solid transparent; border-radius: 14px; background: linear-gradient(135deg,#2737b9,#5830a6 70%,#211954); box-shadow: 0 13px 34px rgba(32,25,95,.25); cursor: pointer; transition: transform .2s ease, border-color .2s ease; transform: translateZ(0); }
-.ticket-kicker { color: rgba(255,255,255,.72); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-.ticket-title { margin: 12px 0 8px; font-size: 22px; font-weight: 800; }
-.ticket-time { color: #e2ddff; font-size: 17px; }
-.ticket-play { align-self: flex-end; margin-top: -25px; color: white; font-size: 30px; }
-.empty-state { grid-column: 1 / -1; width: 100%; padding: 65px 20px; color: #888894; text-align: center; font-size: 19px; }
-.player-layer { position: fixed; inset: 0; z-index: 5000; overflow: hidden; background: #000; }
-.video-player { width: 100%; height: 100%; background: #000; object-fit: contain; }
-.iframe-host, .iframe-host iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
-.back-button { position: absolute; z-index: 2; top: 36px; left: 38px; display: flex; align-items: center; min-width: 150px; height: 58px; padding: 0 19px; border: 2px solid rgba(255,255,255,.28); border-radius: 10px; background: rgba(10,10,14,.82); color: white; font-size: 19px; font-weight: 700; cursor: pointer; }
-.back-button span { margin-right: 12px; font-size: 34px; line-height: 20px; }
-.player-status { position: absolute; top: 48%; right: 0; left: 0; color: white; text-align: center; text-shadow: 0 2px 12px black; font-size: 19px; pointer-events: none; }
-@media (max-width: 1280px) { .main-content { padding-right: 34px; padding-left: 34px; } .content-grid { grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); column-gap: 20px; } }
+.sidebar:focus-within .sidebar-footer .nav-label { display: inline; margin-left: 10px; }
+.online-dot { width: 10px; height: 10px; background: #7b3cff; border-radius: 50%; box-shadow: 0 0 10px #7b3cff; }
+
+/* Contenido Principal */
+.main-content { margin-left: 92px; padding: 40px 60px; height: 100%; overflow: auto; }
+.page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+.page-header h1 { font-size: 45px; margin: 0; }
+.search-trigger { height: 50px; padding: 0 25px; border-radius: 25px; background: #222; border: 2px solid #444; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; }
+.search-trigger .search-icon { font-size: 28px; margin-right: 10px; color: #9280ff; }
+
+/* Ventana Modal de Búsqueda */
+.search-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 4000; display: flex; align-items: center; justify-content: center; }
+.search-modal-content { width: 800px; background: #111; padding: 40px; border-radius: 16px; border: 1px solid #333; }
+.search-modal-content h2 { margin-top: 0; text-align: center; margin-bottom: 20px; }
+#moduleSearchInput { width: 100%; height: 60px; padding: 0 20px; font-size: 24px; background: #000; color: white; border: 2px solid #444; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+.virtual-keyboard { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+.kbd-key { background: #2a2a35; color: white; padding: 15px; font-size: 22px; font-weight: bold; border-radius: 8px; border: 2px solid transparent; cursor: pointer; }
+.close-search { margin-top: 20px; background: #333; }
+
+/* Títulos y Rejilla */
+.section-title { grid-column: 1 / -1; font-size: 24px; font-weight: bold; margin-top: 20px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+.status-message { font-size: 18px; color: #aaa; text-align: center; margin-bottom: 20px; }
+.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; padding: 10px; }
+
+/* Tarjetas Películas y TV */
+.catalog-card { position: relative; border-radius: 12px; background: #121218; border: 4px solid transparent; cursor: pointer; overflow: hidden; }
+.poster-card { height: auto; padding-bottom: 150%; }
+.poster-card img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.card-caption { position: absolute; bottom: 0; width: 100%; padding: 20px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); text-align: center; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.tv-card { padding-bottom: 0; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; background: linear-gradient(145deg, #1a1a24, #0b0b10); }
+.tv-card img { width: 100%; height: 80px; object-fit: contain; margin-bottom: 15px; }
+.tv-caption { font-weight: bold; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Tarjetas Deportes (Escudos reales de internet) */
+.sports-ticket { padding: 15px; border-radius: 14px; background: linear-gradient(135deg, #2737b9, #5830a6); border: 4px solid transparent; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; }
+.ticket-kicker { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; }
+.match-teams { display: flex; align-items: center; justify-content: space-between; flex: 1; margin-top: 10px; }
+.team { display: flex; flex-direction: column; align-items: center; width: 40%; }
+/* Logo mejorado: Fondo semitransparente para que destaquen más */
+.team-logo { width: 70px; height: 70px; border-radius: 50%; border: none; object-fit: contain; margin-bottom: 8px; background: rgba(255,255,255,0.95); padding: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.5); }
+.team-name { font-size: 14px; font-weight: bold; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.1; }
+.vs-badge { font-size: 18px; font-weight: 900; background: rgba(0,0,0,0.6); padding: 5px 10px; border-radius: 10px; color: #fff; }
+.ticket-time { text-align: center; color: #e2ddff; font-size: 14px; margin-top: 10px; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 8px; }
+
+/* Reproductor e Iframe */
+.player-layer { position: fixed; inset: 0; z-index: 5000; background: #000; }
+.video-player { width: 100%; height: 100%; background: #000; }
+.iframe-host, .iframe-host iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #000; }
+.back-button-transparent { position: absolute; z-index: 9999; top: 30px; left: 30px; background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 80px; font-weight: bold; cursor: pointer; width: 80px; height: 80px; line-height: 70px; text-align: center; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); transition: all 0.2s; }
+.back-button-transparent:focus { color: white; transform: scale(1.2); }
+.player-status { position: absolute; top: 48%; width: 100%; text-align: center; font-size: 24px; z-index: 5; pointer-events: none; }

@@ -9,60 +9,73 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div id="loginLayer" class="login-layer" role="dialog" aria-label="Iniciar sesión">
-    <div class="login-card">
-      <img class="login-logo" src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" alt="VYRO">
-      <p class="eyebrow">TU ENTRETENIMIENTO, A TU MANERA</p>
-      <h1>Bienvenido</h1>
-      <p class="login-copy">Inicia sesión para continuar</p>
-      <form id="loginForm" autocomplete="off">
-        <label for="username">Usuario</label>
-        <input id="username" name="username" type="text" placeholder="Ingresa tu usuario" autocomplete="username">
-        <label for="password">Contraseña</label>
-        <input id="password" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password">
-        <button id="btnLogin" class="primary-button" type="submit" tabindex="0">Entrar <span aria-hidden="true">›</span></button>
-      </form>
-      <p id="loginMessage" class="message" aria-live="polite"></p>
+  <!-- LOGIN -->
+  <div id="loginLayer" class="login-layer" role="dialog">
+    <div class="login-container">
+      <div class="login-card">
+        <img class="login-logo" src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" alt="VYRO" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'></svg>'">
+        <p class="eyebrow">TU ENTRETENIMIENTO, A TU MANERA</p>
+        <h1>Bienvenido</h1>
+        <form id="loginForm" autocomplete="off">
+          <label for="username">Usuario</label>
+          <input id="username" type="text" placeholder="Ingresa tu usuario" tabindex="0" readonly>
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" placeholder="Ingresa tu contraseña" tabindex="0" readonly>
+          <button id="btnLogin" class="primary-button" type="submit" tabindex="0">Entrar <span aria-hidden="true">›</span></button>
+        </form>
+        <p id="loginMessage" class="message"></p>
+      </div>
+      <!-- TECLADO DEL LOGIN -->
+      <div id="loginKeyboard" class="login-keyboard is-hidden"></div>
     </div>
   </div>
 
+  <!-- INTERFAZ PRINCIPAL -->
   <div id="appShell" class="app-shell is-hidden">
-    <aside id="sidebar" class="sidebar" aria-label="Navegación principal">
-      <div class="sidebar-brand">
-        <img src="assets/add-the-wordmark--vyro--in-solid-white--bold-moder.png" alt="VYRO">
-        <span class="brand-word">VYRO</span>
-      </div>
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand"><span class="brand-word">VYRO</span></div>
       <nav id="mainNav">
-        <button class="nav-item" data-view="search" aria-label="Búsqueda" tabindex="0"><span class="nav-icon">⌕</span><span class="nav-label">Búsqueda</span></button>
-        <button class="nav-item" data-view="matches" aria-label="Partidos" tabindex="0"><span class="nav-icon">◉</span><span class="nav-label">Partidos</span></button>
-        <button class="nav-item is-active" data-view="movies" aria-label="Películas" tabindex="0"><span class="nav-icon">▣</span><span class="nav-label">Películas</span></button>
-        <button class="nav-item" data-view="featured" aria-label="Destacadas" tabindex="0"><span class="nav-icon">✦</span><span class="nav-label">Destacadas</span></button>
-        <button class="nav-item" data-view="series" aria-label="Series" tabindex="0"><span class="nav-icon">▤</span><span class="nav-label">Series</span></button>
-        <button class="nav-item" data-view="episodes" aria-label="Episodios" tabindex="0"><span class="nav-icon">▷</span><span class="nav-label">Episodios</span></button>
+        <button class="nav-item is-active" data-view="movies" tabindex="0"><span class="nav-icon">▣</span><span class="nav-label">Películas</span></button>
+        <button class="nav-item" data-view="tv" tabindex="0"><span class="nav-icon">📺</span><span class="nav-label">TV en Vivo</span></button>
+        <button class="nav-item" data-view="matches" tabindex="0"><span class="nav-icon">◉</span><span class="nav-label">Deportes</span></button>
       </nav>
       <div class="sidebar-footer"><span class="online-dot"></span><span class="nav-label">VYRO TV</span></div>
     </aside>
 
     <main id="mainContent" class="main-content">
       <header class="page-header">
-        <div><p class="eyebrow" id="pageEyebrow">EXPLORA VYRO</p><h1 id="pageTitle">Películas</h1></div>
-        <div class="header-mark"><span class="online-dot"></span><span>VYRO</span></div>
+        <div>
+          <p class="eyebrow" id="pageEyebrow">EXPLORA VYRO</p>
+          <h1 id="pageTitle">Películas</h1>
+        </div>
+        <button id="btnOpenSearch" class="search-trigger" tabindex="0">
+          <span class="search-icon">⌕</span> Buscar
+        </button>
       </header>
-      <section id="searchPanel" class="search-panel is-hidden" aria-label="Buscar contenido">
-        <span class="search-icon">⌕</span>
-        <input id="searchInput" type="text" placeholder="Buscar películas, series y más" autocomplete="off" aria-label="Buscar películas, series y más">
-        <span class="search-hint">Usa el teclado de tu control</span>
+
+      <div id="statusMessage" class="status-message"></div>
+      <section class="catalog-section">
+        <div id="contentGrid" class="content-grid"></div>
       </section>
-      <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
-      <section class="catalog-section" aria-label="Contenido"><div id="contentGrid" class="content-grid"></div></section>
     </main>
   </div>
 
-  <section id="playerLayer" class="player-layer is-hidden" aria-label="Reproductor">
+  <!-- VENTANA MODAL DE BÚSQUEDA -->
+  <div id="searchModal" class="search-modal is-hidden">
+    <div class="search-modal-content">
+      <h2>Buscar contenido</h2>
+      <input id="moduleSearchInput" type="text" placeholder="Escribe para buscar..." readonly>
+      <div id="virtualKeyboard" class="virtual-keyboard"></div>
+      <button id="btnCloseSearch" class="primary-button close-search" tabindex="0">Cerrar Búsqueda</button>
+    </div>
+  </div>
+
+  <!-- REPRODUCTOR -->
+  <section id="playerLayer" class="player-layer is-hidden">
     <video id="videoPlayer" class="video-player" controls autoplay playsinline></video>
     <div id="iframeHost" class="iframe-host is-hidden"></div>
-    <button id="btnVolver" class="back-button" tabindex="0"><span aria-hidden="true">‹</span> Volver</button>
-    <div id="playerStatus" class="player-status" aria-live="polite"></div>
+    <button id="btnVolver" class="back-button-transparent" tabindex="0" title="Volver">‹</button>
+    <div id="playerStatus" class="player-status"></div>
   </section>
 </body>
 </html>
